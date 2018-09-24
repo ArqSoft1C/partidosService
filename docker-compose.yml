@@ -15,7 +15,7 @@ services:
     depends_on:
       - partidos-db
   partidos-db:
-    image: postgres:9.6
+    image: postgres:9.6-alpine
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
