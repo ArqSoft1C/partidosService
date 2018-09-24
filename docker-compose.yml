@@ -1,7 +1,7 @@
 version: '2.1'
 
 services:
-  phoenix:
+  partidos-ms:
     build:
       context: .
     environment:
@@ -9,12 +9,12 @@ services:
       PGPASSWORD: postgres
       PGDATABASE: partidoService_dev
       PGPORT: 5432
-      PGHOST: db
+      PGHOST: partidos-db
     ports:
       - "4000:4000"
     depends_on:
-      - db
-  db:
+      - partidos-db
+  partidos-db:
     image: postgres:9.6
     environment:
       POSTGRES_USER: postgres
