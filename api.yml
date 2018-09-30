@@ -1,0 +1,297 @@
+#Test with: http://editor.swagger.io/
+
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Partidos Microservice for Picaditos
+  description: Elixir + PostgreSQL
+  license:
+    name: Software Architecture 2018-II
+host: 192.168.99.101:4000
+basePath: /api
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /partidos:
+    post:
+      summary: Creates a new partido
+      operationId: createPartido
+      parameters:
+        - name: partido
+          in: body
+          required: true
+          description: Partido Object
+          schema:
+            $ref: '#/definitions/PartidoInput'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/SinglePartido'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/GenericError'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/GenericError'
+        '422':
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/FieldError'
+    get:
+      summary: Returns all partidos
+      operationId: getAllPartidos
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/PartidosList'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/GenericError'
+
+  /partidos/{id}:
+    get:
+      summary: Returns a partido with the given id
+      operationId: getPartidobyId
+      parameters:
+        - name: id
+          in: path
+          description: The id of the partido to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/SinglePartido'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/GenericError'
+        '400':
+            description: Bad Request
+            schema:
+              $ref: '#/definitions/GenericError'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/GenericError'
+
+    put:
+      summary: Updates a partido with the given id
+      operationId: updatePartido
+      parameters:
+        - name: id
+          in: path
+          description: The id of the partido to be updated
+          required: true
+          type: integer
+        - name: partido
+          in: body
+          required: true
+          description: Partido Object
+          schema:
+            $ref: '#/definitions/PartidoInput'
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/SinglePartido'  
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/GenericError'
+        '400':
+            description: Bad Request
+            schema:
+              $ref: '#/definitions/GenericError'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/GenericError'
+        '422':
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/FieldError'
+
+    delete:
+      summary: Deletes a partido with the given id
+      operationId: deletePartido
+      parameters:
+        - name: id
+          in: path
+          description: The id of the partido to be deleted
+          required: true
+          type: integer
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/GenericError'
+        '400':
+            description: Bad Request
+            schema:
+              $ref: '#/definitions/GenericError'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /partidos_score/{id}:
+    put:
+      summary: Updates the score of a partido with the given id and sets jugado to true
+      operationId: updateScoresPartido
+      parameters:
+        - name: id
+          in: path
+          description: The id of the partido to be updated
+          required: true
+          type: integer
+        - name: partido
+          in: body
+          required: true
+          description: Partido Object
+          schema:
+            $ref: '#/definitions/PartidoScoreInput'
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/SinglePartido'  
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/GenericError'
+        '400':
+            description: Bad Request
+            schema:
+              $ref: '#/definitions/GenericError'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/GenericError'
+        '422':
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/FieldError'
+  /partidos_equipo/{equipo_id}:
+    get:
+      summary: Returns a list of partidos given an equipo_id, returns an empty array if none can be found
+      operationId: getPartidosEquipo
+      parameters:
+        - name: equipo_id
+          in: path
+          description: The id of the partido to be updated
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/PartidosList'  
+        '400':
+            description: Bad Request
+            schema:
+              $ref: '#/definitions/GenericError'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/GenericError'
+  /partidos_jugados:
+    get:
+      summary: Returns a list of partidos where jugado is true
+      operationId: getPartidosJugados
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/PartidosList'  
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/GenericError'
+
+definitions:
+
+  Partido:
+    type: object
+    properties:
+      id:
+        type: integer
+      cancha_id:
+        type: integer
+      equipo_local_id:
+        type: integer
+      equipo_visitante_id:
+        type: integer
+      fecha:
+        type: string
+      jugado:
+        type: boolean
+      marcador_local:
+        type: integer
+      marcador_visitante:
+        type: integer
+
+  PartidoInput:
+    type: object
+    properties:
+      cancha_id:
+        type: integer
+      equipo_local_id:
+        type: integer
+      equipo_visitante_id:
+        type: integer
+      fecha:
+        type: string
+  
+  PartidoScoreInput:
+    type: object
+    properties:
+      marcador_local:
+        type: integer
+      marcador_visitante:
+        type: integer
+
+  PartidosList:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Partido'
+          
+  SinglePartido:
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/Partido'
+
+# Errors
+  GenericError:
+    type: object
+    properties:
+      error:
+        type: object
+        properties:
+          detail:
+            type: string
+  FieldError:
+    type: object
+    properties:
+      error:
+        type: object
+        properties:
+          field:
+            type: array
+            items:
+              type: string
