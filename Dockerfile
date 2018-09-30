@@ -8,7 +8,8 @@ COPY . /app
 WORKDIR /app
 
 RUN mix local.hex --force
-
-RUN mix do compile
+RUN mix local.rebar --force
+RUN mix deps.get && \ 
+    mix do compile
 
 CMD ["/app/entrypoint.sh"]
