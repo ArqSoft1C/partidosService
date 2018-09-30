@@ -7,7 +7,7 @@ defmodule PartidoService.Service.Partido do
     field :cancha_id, :integer
     field :equipo_local_id, :integer
     field :equipo_visitante_id, :integer
-    field :fecha, :date
+    field :fecha, :naive_datetime
     field :jugado, :boolean, default: false
     field :marcador_local, :integer, default: 0
     field :marcador_visitante, :integer, default: 0
