@@ -74,6 +74,25 @@ defmodule PartidoService.Service do
   end
 
   @doc """
+  Updates the score of a partido.
+
+  ## Examples
+
+      iex> update_partido(partido, %{field: new_value})
+      {:ok, %Partido{}}
+
+      iex> update_partido(partido, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_score_partido(%Partido{} = partido, attrs) do
+    partido
+    |> Partido.changesetScores(attrs)
+    |> Repo.update()
+  end
+
+
+  @doc """
   Deletes a Partido.
 
   ## Examples
@@ -100,5 +119,18 @@ defmodule PartidoService.Service do
   """
   def change_partido(%Partido{} = partido) do
     Partido.changeset(partido, %{})
+  end
+
+   @doc """
+  Returns a list of Partidos given an equipo_id.
+
+  ## Examples
+
+      iex> get_partido_by_equipo!(123)
+      [%Partido{}, ...]
+
+  """
+  def get_partido_by_equipo(equipo_id) do
+    Partido |> where([p], p.equipo_local_id == ^equipo_id or p.equipo_visitante_id == ^equipo_id) |> Repo.all
   end
 end

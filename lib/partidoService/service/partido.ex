@@ -9,8 +9,8 @@ defmodule PartidoService.Service.Partido do
     field :equipo_visitante_id, :integer
     field :fecha, :date
     field :jugado, :boolean, default: false
-    field :marcador_local, :integer
-    field :marcador_visitante, :integer
+    field :marcador_local, :integer, default: 0
+    field :marcador_visitante, :integer, default: 0
 
     timestamps()
   end
@@ -18,7 +18,15 @@ defmodule PartidoService.Service.Partido do
   @doc false
   def changeset(partido, attrs) do
     partido
-    |> cast(attrs, [:cancha_id, :fecha, :jugado, :equipo_local_id, :equipo_visitante_id, :marcador_local, :marcador_visitante])
-    |> validate_required([:cancha_id, :fecha, :jugado, :equipo_local_id, :equipo_visitante_id, :marcador_local, :marcador_visitante])
+    |> cast(attrs, [:cancha_id, :fecha, :equipo_local_id, :equipo_visitante_id])
+    |> validate_required([:cancha_id, :fecha, :equipo_local_id, :equipo_visitante_id])
+  end
+
+  @doc false
+  def changesetScores(partido, attrs) do
+    partido
+    |> cast(attrs, [:marcador_local, :marcador_visitante])
+    |> cast(%{jugado: true}, [:jugado])
+    |> validate_required([:jugado, :marcador_local, :marcador_visitante])
   end
 end

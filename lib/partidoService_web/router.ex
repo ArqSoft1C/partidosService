@@ -8,5 +8,7 @@ defmodule PartidoServiceWeb.Router do
   scope "/api", PartidoServiceWeb do
     pipe_through :api
     resources "/partidos", PartidoController, except: [:new, :edit]
+    put "/partidos/score/:id", PartidoController, :updateScore
+    get "/partidos/equipo/:equipo_id", PartidoController, :getByEquipo
   end
 end
