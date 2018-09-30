@@ -121,7 +121,7 @@ defmodule PartidoService.Service do
     Partido.changeset(partido, %{})
   end
 
-   @doc """
+  @doc """
   Returns a list of Partidos given an equipo_id.
 
   ## Examples
@@ -132,5 +132,18 @@ defmodule PartidoService.Service do
   """
   def get_partido_by_equipo(equipo_id) do
     Partido |> where([p], p.equipo_local_id == ^equipo_id or p.equipo_visitante_id == ^equipo_id) |> Repo.all
+  end
+
+  @doc """
+  Returns a list of Partidos where jugado is true.
+
+  ## Examples
+
+      iex> get_played!()
+      [%Partido{}, ...]
+
+  """
+  def get_played() do
+    Partido |> where([p], p.jugado == true) |> Repo.all
   end
 end

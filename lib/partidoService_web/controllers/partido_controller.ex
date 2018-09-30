@@ -45,6 +45,11 @@ defmodule PartidoServiceWeb.PartidoController do
     render(conn, "index.json", partidos: partidos)
   end
 
+  def getJugados(conn, _params) do
+    partidos = Service.get_played()
+    render(conn, "index.json", partidos: partidos)
+  end
+
   def delete(conn, %{"id" => id}) do
     partido = Service.get_partido!(id)
     with {:ok, %Partido{}} <- Service.delete_partido(partido) do

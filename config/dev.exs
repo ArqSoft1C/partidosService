@@ -42,5 +42,5 @@ config :partidoService, PartidoService.Repo,
   username: "postgres",
   password: "postgres",
   database: "partidoService_dev",
-  hostname: "db",
+  hostname: "localhost",
   pool_size: 10
