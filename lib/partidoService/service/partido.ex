@@ -18,7 +18,7 @@ defmodule PartidoService.Service.Partido do
   @doc false
   def changeset(partido, attrs) do
     partido
-    |> cast(attrs, [:cancha_id, :fecha, :equipo_local_id, :equipo_visitante_id])
+    |> cast(attrs, [:cancha_id, :fecha, :equipo_local_id, :equipo_visitante_id, :marcador_local, :marcador_visitante, :jugado])
     |> validate_required([:cancha_id, :fecha, :equipo_local_id, :equipo_visitante_id])
   end
 

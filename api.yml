@@ -146,80 +146,6 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/GenericError'
-  /partidos_score/{id}:
-    put:
-      summary: Updates the score of a partido with the given id and sets jugado to true
-      operationId: updateScoresPartido
-      parameters:
-        - name: id
-          in: path
-          description: The id of the partido to be updated
-          required: true
-          type: integer
-        - name: partido
-          in: body
-          required: true
-          description: Partido Object
-          schema:
-            $ref: '#/definitions/PartidoScoreInput'
-      responses:
-        '200':
-          description: Ok
-          schema:
-            $ref: '#/definitions/SinglePartido'  
-        '404':
-          description: Not Found
-          schema:
-            $ref: '#/definitions/GenericError'
-        '400':
-            description: Bad Request
-            schema:
-              $ref: '#/definitions/GenericError'
-        '500':
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/GenericError'
-        '422':
-          description: Unprocessable Entity
-          schema:
-            $ref: '#/definitions/FieldError'
-  /partidos_equipo/{equipo_id}:
-    get:
-      summary: Returns a list of partidos given an equipo_id, returns an empty array if none can be found
-      operationId: getPartidosEquipo
-      parameters:
-        - name: equipo_id
-          in: path
-          description: The id of the partido to be updated
-          required: true
-          type: integer
-      responses:
-        '200':
-          description: Ok
-          schema:
-            $ref: '#/definitions/PartidosList'  
-        '400':
-            description: Bad Request
-            schema:
-              $ref: '#/definitions/GenericError'
-        '500':
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/GenericError'
-  /partidos_jugados:
-    get:
-      summary: Returns a list of partidos where jugado is true
-      operationId: getPartidosJugados
-      responses:
-        '200':
-          description: Ok
-          schema:
-            $ref: '#/definitions/PartidosList'  
-        '500':
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/GenericError'
-
 definitions:
 
   Partido:
@@ -245,22 +171,23 @@ definitions:
   PartidoInput:
     type: object
     properties:
-      cancha_id:
-        type: integer
-      equipo_local_id:
-        type: integer
-      equipo_visitante_id:
-        type: integer
-      fecha:
-        type: string
-  
-  PartidoScoreInput:
-    type: object
-    properties:
-      marcador_local:
-        type: integer
-      marcador_visitante:
-        type: integer
+      partido:
+        type: object
+        properties:
+          cancha_id:
+            type: integer
+          equipo_local_id:
+            type: integer
+          equipo_visitante_id:
+            type: integer
+          fecha:
+            type: string
+          jugado:
+            type: boolean
+          marcador_local:
+            type: integer
+          marcador_visitante:
+            type: integer
 
   PartidosList:
     type: object
