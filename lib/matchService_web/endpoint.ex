@@ -1,14 +1,14 @@
-defmodule PartidoServiceWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :partidoService
+defmodule MatchServiceWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :matchService
 
-  socket "/socket", PartidoServiceWeb.UserSocket
+  socket "/socket", MatchServiceWeb.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :partidoService, gzip: false,
+    at: "/", from: :matchService, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -32,7 +32,7 @@ defmodule PartidoServiceWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_partidoService_key",
+    key: "_matchService_key",
     signing_salt: "j0UYxPix"
 
   plug Corsica,
@@ -41,7 +41,7 @@ defmodule PartidoServiceWeb.Endpoint do
       allow_headers: ["content-type"],
       allow_credentials: true
 
-  plug PartidoServiceWeb.Router
+  plug MatchServiceWeb.Router
 
   @doc """
   Callback invoked for dynamically configuring the endpoint.

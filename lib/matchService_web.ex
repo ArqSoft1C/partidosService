@@ -1,12 +1,12 @@
-defmodule PartidoServiceWeb do
+defmodule MatchServiceWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use PartidoServiceWeb, :controller
-      use PartidoServiceWeb, :view
+      use MatchServiceWeb, :controller
+      use MatchServiceWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,24 +19,24 @@ defmodule PartidoServiceWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: PartidoServiceWeb
+      use Phoenix.Controller, namespace: MatchServiceWeb
       import Plug.Conn
-      import PartidoServiceWeb.Router.Helpers
-      import PartidoServiceWeb.Gettext
+      import MatchServiceWeb.Router.Helpers
+      import MatchServiceWeb.Gettext
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/partidoService_web/templates",
-                        namespace: PartidoServiceWeb
+      use Phoenix.View, root: "lib/matchService_web/templates",
+                        namespace: MatchServiceWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
 
-      import PartidoServiceWeb.Router.Helpers
-      import PartidoServiceWeb.ErrorHelpers
-      import PartidoServiceWeb.Gettext
+      import MatchServiceWeb.Router.Helpers
+      import MatchServiceWeb.ErrorHelpers
+      import MatchServiceWeb.Gettext
     end
   end
 
@@ -51,7 +51,7 @@ defmodule PartidoServiceWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import PartidoServiceWeb.Gettext
+      import MatchServiceWeb.Gettext
     end
   end
 

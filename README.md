@@ -1,4 +1,4 @@
-# PartidoService
+# MatchService
 
 To start your Phoenix server:
 

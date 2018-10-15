@@ -1,11 +1,11 @@
-defmodule PartidoServiceWeb.ChangesetView do
-  use PartidoServiceWeb, :view
+defmodule MatchServiceWeb.ChangesetView do
+  use MatchServiceWeb, :view
 
   @doc """
   Traverses and translates changeset errors.
 
   See `Ecto.Changeset.traverse_errors/2` and
-  `PartidoServiceWeb.ErrorHelpers.translate_error/1` for more details.
+  `MatchServiceWeb.ErrorHelpers.translate_error/1` for more details.
   """
   def translate_errors(changeset) do
     Ecto.Changeset.traverse_errors(changeset, &translate_error/1)

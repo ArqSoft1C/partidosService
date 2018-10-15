@@ -2,7 +2,7 @@ use Mix.Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :partidoService, PartidoServiceWeb.Endpoint,
+config :matchService, MatchServiceWeb.Endpoint,
   http: [port: 4001],
   server: false
 
@@ -10,10 +10,10 @@ config :partidoService, PartidoServiceWeb.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
-config :partidoService, PartidoService.Repo,
+config :matchService, MatchService.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "partidoservice_test",
+  database: "matcheservice_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

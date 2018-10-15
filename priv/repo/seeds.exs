@@ -5,22 +5,22 @@
 # Inside the script, you can read and write to any of your
 # repositories directly:
 #
-#     PartidoService.Repo.insert!(%PartidoService.SomeSchema{})
+#     MatchService.Repo.insert!(%MatchService.SomeSchema{})
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
-alias PartidoService.Repo
-alias PartidoService.Service.Partido
+alias MatchService.Repo
+alias MatchService.Service.Match
 for _ <- 1..10 do
   id = [1, 2, 3, 4, 5, 6]
   local = Enum.random(id)
   id = List.delete(id, local)
   away = Enum.random(id)
-  Repo.insert!(%Partido{
-    cancha_id: Enum.random(1..5),
-    fecha: NaiveDateTime.utc_now,
-    equipo_local_id: local,
-    equipo_visitante_id: away
+  Repo.insert!(%Match{
+    court_id: Enum.random(1..5),
+    date: NaiveDateTime.utc_now,
+    team_home_id: local,
+    team_away_id: away
 })
 end
 
@@ -29,13 +29,13 @@ for _ <- 1..5 do
   local = Enum.random(id)
   id = List.delete(id, local)
   away = Enum.random(id)
-  Repo.insert!(%Partido{
-    cancha_id: Enum.random(1..5),
-    fecha: NaiveDateTime.utc_now,
-    equipo_local_id: local,
-    equipo_visitante_id: away,
-    jugado: true,
-    marcador_local: Enum.random(0..3),
-    marcador_visitante: Enum.random(0..3)
+  Repo.insert!(%Match{
+    court_id: Enum.random(1..5),
+    date: NaiveDateTime.utc_now,
+    team_home_id: local,
+    team_away_id: away,
+    played: true,
+    score_home: Enum.random(0..3),
+    score_away: Enum.random(0..3)
 })
 end

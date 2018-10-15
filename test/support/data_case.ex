@@ -1,4 +1,4 @@
-defmodule PartidoService.DataCase do
+defmodule MatchService.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule PartidoService.DataCase do
 
   using do
     quote do
-      alias PartidoService.Repo
+      alias MatchService.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import PartidoService.DataCase
+      import MatchService.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PartidoService.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(MatchService.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(PartidoService.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(MatchService.Repo, {:shared, self()})
     end
 
     :ok

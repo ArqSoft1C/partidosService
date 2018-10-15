@@ -1,5 +1,5 @@
-defmodule PartidoService.Repo do
-  use Ecto.Repo, otp_app: :partidoService
+defmodule MatchService.Repo do
+  use Ecto.Repo, otp_app: :matchService
 
   @doc """
   Dynamically loads the repository url from the

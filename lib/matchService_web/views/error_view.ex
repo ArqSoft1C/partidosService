@@ -1,5 +1,5 @@
-defmodule PartidoServiceWeb.ErrorView do
-  use PartidoServiceWeb, :view
+defmodule MatchServiceWeb.ErrorView do
+  use MatchServiceWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

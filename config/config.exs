@@ -6,15 +6,15 @@
 use Mix.Config
 
 # General application configuration
-config :partidoService,
-  ecto_repos: [PartidoService.Repo]
+config :matchService,
+  ecto_repos: [MatchService.Repo]
 
 # Configures the endpoint
-config :partidoService, PartidoServiceWeb.Endpoint,
+config :matchService, MatchServiceWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "NqSZmXaEncF7+Dq3fQkFQmenh5+Lmc5v5owgBbmUavW2JuvA790Yn4n92oThQG/c",
-  render_errors: [view: PartidoServiceWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: PartidoService.PubSub,
+  render_errors: [view: MatchServiceWeb.ErrorView, accepts: ~w(json)],
+  pubsub: [name: MatchService.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

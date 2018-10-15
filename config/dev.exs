@@ -6,7 +6,7 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :partidoService, PartidoServiceWeb.Endpoint,
+config :matchService, MatchServiceWeb.Endpoint,
   http: [port: 4004],
   debug_errors: false,
   code_reloader: true,
@@ -37,10 +37,10 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
-config :partidoService, PartidoService.Repo,
+config :matchService, MatchService.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "partidoService_dev",
+  database: "matchService_dev",
   hostname: "localhost",
   pool_size: 10

@@ -1,16 +1,16 @@
-defmodule PartidoServiceWeb.ErrorViewTest do
-  use PartidoServiceWeb.ConnCase, async: true
+defmodule MatchServiceWeb.ErrorViewTest do
+  use MatchServiceWeb.ConnCase, async: true
 
   # Bring render/3 and render_to_string/3 for testing custom views
   import Phoenix.View
 
   test "renders 404.json" do
-    assert render(PartidoServiceWeb.ErrorView, "404.json", []) ==
+    assert render(MatchServiceWeb.ErrorView, "404.json", []) ==
            %{errors: %{detail: "Not Found"}}
   end
 
   test "renders 500.json" do
-    assert render(PartidoServiceWeb.ErrorView, "500.json", []) ==
+    assert render(MatchServiceWeb.ErrorView, "500.json", []) ==
            %{errors: %{detail: "Internal Server Error"}}
   end
 end

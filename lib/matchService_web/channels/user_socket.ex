@@ -1,8 +1,8 @@
-defmodule PartidoServiceWeb.UserSocket do
+defmodule MatchServiceWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", PartidoServiceWeb.RoomChannel
+  # channel "room:*", MatchServiceWeb.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
@@ -30,7 +30,7 @@ defmodule PartidoServiceWeb.UserSocket do
   # Would allow you to broadcast a "disconnect" event and terminate
   # all active sockets and channels for a given user:
   #
-  #     PartidoServiceWeb.Endpoint.broadcast("user_socket:#{user.id}", "disconnect", %{})
+  #     MatchServiceWeb.Endpoint.broadcast("user_socket:#{user.id}", "disconnect", %{})
   #
   # Returning `nil` makes this socket anonymous.
   def id(_socket), do: nil

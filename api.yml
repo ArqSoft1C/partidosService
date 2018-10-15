@@ -3,7 +3,7 @@
 swagger: '2.0'
 info:
   version: 1.0.0
-  title: Partidos Microservice for Picaditos
+  title: Matches Microservice for Picaditos
   description: Elixir + PostgreSQL
   license:
     name: Software Architecture 2018-II
@@ -16,22 +16,22 @@ consumes:
 produces:
   - application/json
 paths:
-  /partidos:
+  /matches:
     post:
-      summary: Creates a new partido
-      operationId: createPartido
+      summary: Creates a new match
+      operationId: createMatch
       parameters:
-        - name: partido
+        - name: match
           in: body
           required: true
-          description: Partido Object
+          description: Match Object
           schema:
-            $ref: '#/definitions/PartidoInput'
+            $ref: '#/definitions/MatchInput'
       responses:
         '201':
           description: Created
           schema:
-            $ref: '#/definitions/SinglePartido'
+            $ref: '#/definitions/SingleMatch'
         '400':
           description: Bad Request
           schema:
@@ -45,33 +45,33 @@ paths:
           schema:
             $ref: '#/definitions/FieldError'
     get:
-      summary: Returns all partidos
-      operationId: getAllPartidos
+      summary: Returns all matches
+      operationId: getAllMatches
       responses:
         '200':
           description: Ok
           schema:
-            $ref: '#/definitions/PartidosList'
+            $ref: '#/definitions/MatchesList'
         '500':
           description: Internal Server Error
           schema:
             $ref: '#/definitions/GenericError'
 
-  /partidos/{id}:
+  /matches/{id}:
     get:
-      summary: Returns a partido with the given id
-      operationId: getPartidobyId
+      summary: Returns a match with the given id
+      operationId: getMatchbyId
       parameters:
         - name: id
           in: path
-          description: The id of the partido to be returned
+          description: The id of the match to be returned
           required: true
           type: integer
       responses:
         '200':
           description: Ok
           schema:
-            $ref: '#/definitions/SinglePartido'
+            $ref: '#/definitions/SingleMatch'
         '404':
           description: Not Found
           schema:
@@ -86,25 +86,25 @@ paths:
             $ref: '#/definitions/GenericError'
 
     put:
-      summary: Updates a partido with the given id
-      operationId: updatePartido
+      summary: Updates a match with the given id
+      operationId: updateMatch
       parameters:
         - name: id
           in: path
-          description: The id of the partido to be updated
+          description: The id of the match to be updated
           required: true
           type: integer
-        - name: partido
+        - name: match
           in: body
           required: true
-          description: Partido Object
+          description: Match Object
           schema:
-            $ref: '#/definitions/PartidoInput'
+            $ref: '#/definitions/MatchInput'
       responses:
         '200':
           description: Ok
           schema:
-            $ref: '#/definitions/SinglePartido'  
+            $ref: '#/definitions/SingleMatch'  
         '404':
           description: Not Found
           schema:
@@ -123,12 +123,12 @@ paths:
             $ref: '#/definitions/FieldError'
 
     delete:
-      summary: Deletes a partido with the given id
-      operationId: deletePartido
+      summary: Deletes a match with the given id
+      operationId: deleteMatch
       parameters:
         - name: id
           in: path
-          description: The id of the partido to be deleted
+          description: The id of the match to be deleted
           required: true
           type: integer
       responses:
@@ -148,60 +148,60 @@ paths:
             $ref: '#/definitions/GenericError'
 definitions:
 
-  Partido:
+  Match:
     type: object
     properties:
       id:
         type: integer
-      cancha_id:
+      court_id:
         type: integer
-      equipo_local_id:
+      team_home_id:
         type: integer
-      equipo_visitante_id:
+      team_away_id:
         type: integer
-      fecha:
+      date:
         type: string
-      jugado:
+      played:
         type: boolean
-      marcador_local:
+      score_home:
         type: integer
-      marcador_visitante:
+      score_away:
         type: integer
 
-  PartidoInput:
+  MatchInput:
     type: object
     properties:
-      partido:
+      match:
         type: object
         properties:
-          cancha_id:
+          court_id:
             type: integer
-          equipo_local_id:
+          team_home_id:
             type: integer
-          equipo_visitante_id:
+          team_away_id:
             type: integer
-          fecha:
+          date:
             type: string
-          jugado:
+          played:
             type: boolean
-          marcador_local:
+          score_home:
             type: integer
-          marcador_visitante:
+          score_away:
             type: integer
 
-  PartidosList:
+  MatchesList:
     type: object
     properties:
       data:
         type: array
         items:
-          $ref: '#/definitions/Partido'
+          $ref: '#/definitions/Match'
           
-  SinglePartido:
+  SingleMatch:
     type: object
     properties:
       data:
-        $ref: '#/definitions/Partido'
+        $ref: '#/definitions/Match'
 
 # Errors
   GenericError:

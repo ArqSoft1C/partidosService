@@ -1,20 +1,20 @@
 version: '2.1'
 
 services:
-  partidos-ms:
+  matches-ms:
     build:
       context: .
     environment:
       PGUSER: postgres
       PGPASSWORD: postgres
-      PGDATABASE: partidoService_dev
+      PGDATABASE: matchService_dev
       PGPORT: 5432
-      PGHOST: partidos-db
+      PGHOST: matches-db
     ports:
       - "4004:4004"
     depends_on:
-      - partidos-db
-  partidos-db:
+      - matches-db
+  matches-db:
     image: postgres:9.6-alpine
     environment:
       POSTGRES_USER: postgres

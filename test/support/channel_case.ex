@@ -1,4 +1,4 @@
-defmodule PartidoServiceWeb.ChannelCase do
+defmodule MatchServiceWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,15 +21,15 @@ defmodule PartidoServiceWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint PartidoServiceWeb.Endpoint
+      @endpoint MatchServiceWeb.Endpoint
     end
   end
 
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PartidoService.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(MatchService.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(PartidoService.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(MatchService.Repo, {:shared, self()})
     end
     :ok
   end
