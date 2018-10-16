@@ -11,8 +11,17 @@
 # and so on) as they will fail if something goes wrong.
 alias MatchService.Repo
 alias MatchService.Service.Match
+
+ids = [
+  "5bb53739573f49000a925f7c",
+  "5op53739573f49000a925f7c",
+  "5yu53739573f49000a925f7c",
+  "5tr53739573f49000a925f7c",
+  "5sg53739573f49000a925f7c",
+  "5cg53739573f49000a925f7c"
+]
 for _ <- 1..10 do
-  id = [1, 2, 3, 4, 5, 6]
+  id = ids
   local = Enum.random(id)
   id = List.delete(id, local)
   away = Enum.random(id)
@@ -25,7 +34,7 @@ for _ <- 1..10 do
 end
 
 for _ <- 1..5 do
-  id = [1, 2, 3, 4, 5, 6]
+  id = ids
   local = Enum.random(id)
   id = List.delete(id, local)
   away = Enum.random(id)

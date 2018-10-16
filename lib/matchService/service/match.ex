@@ -5,8 +5,8 @@ defmodule MatchService.Service.Match do
 
   schema "matches" do
     field :court_id, :integer
-    field :team_home_id, :integer
-    field :team_away_id, :integer
+    field :team_home_id, :string
+    field :team_away_id, :string
     field :date, :naive_datetime
     field :played, :boolean, default: false
     field :score_home, :integer, default: 0

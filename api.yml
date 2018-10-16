@@ -156,9 +156,9 @@ definitions:
       court_id:
         type: integer
       team_home_id:
-        type: integer
+        type: string
       team_away_id:
-        type: integer
+        type: string
       date:
         type: string
       played:
