@@ -7,13 +7,13 @@ do
   echo "$(date) - waiting for database to start"
   sleep 2
 done
-dropdb $PGDATABASE
+# dropdb $PGDATABASE
 # Create, migrate, and seed database if it doesn't exist.
 if ! psql -U "$PGUSER" -lqtA | cut -d\| -f1 | grep -qFx "$PGDATABASE"; then
   echo "Database $PGDATABASE does not exist. Creating..."
   createdb -E UTF8 $PGDATABASE -l en_US.UTF-8 -T template0
   mix ecto.migrate
-  mix run priv/repo/seeds.exs
+#  mix run priv/repo/seeds.exs
   echo "Database $PGDATABASE created."
 fi
 exec mix phx.server
