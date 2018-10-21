@@ -19,7 +19,7 @@ defmodule MatchService.Service.Match do
   def changeset(match, attrs) do
     match
     |> cast(attrs, [:court_id, :date, :team_home_id, :team_away_id, :score_home, :score_away, :played])
-    |> validate_required([:court_id, :date, :team_home_id, :team_away_id])
+    |> validate_required([:court_id, :date, :team_home_id])
   end
 
   @doc false
