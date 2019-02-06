@@ -12,4 +12,4 @@ RUN mix local.rebar --force
 RUN mix deps.get && \ 
     mix do compile
 
-CMD ["/app/entrypoint.sh"]
+CMD ["sudo","/app/entrypoint.sh"]
