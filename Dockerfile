@@ -11,5 +11,5 @@ RUN mix local.hex --force
 RUN mix local.rebar --force
 RUN mix deps.get && \ 
     mix do compile
-
+RUN chmod +x /app/entrypoint.sh
 CMD ["/app/entrypoint.sh"]
