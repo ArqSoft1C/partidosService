@@ -43,4 +43,4 @@ config :matchService, MatchService.Repo,
   password: "postgres",
   database: "matchService_dev",
   hostname: "localhost",
-  pool_size: 10
+  pool_size: 20
